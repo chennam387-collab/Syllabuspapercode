@@ -1,276 +1,959 @@
 
-* {
-  box-sizing: border-box;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1839a5">
+<meta name="description" content="SyllabusPaper helps schools and teachers create syllabus-based question papers for classroom and examination practice.">
+<title>SyllabusPaper | Smart Question Paper Creator</title>
+
+<style>
+:root {
+  --blue: #244fe0;
+  --navy: #142653;
+  --light: #f3f6ff;
+  --text: #1a2744;
+  --muted: #6d7890;
+  --border: #e1e7f3;
+  --white: #ffffff;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  background: #f4f7ff;
-  color: #172344;
+  color: var(--text);
+  background: var(--light);
   line-height: 1.6;
 }
 
+button, input, select, textarea { font: inherit; }
+
+button { cursor: pointer; }
+
 header {
+  background: white;
+  border-bottom: 1px solid var(--border);
+  padding: 14px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.97);
-  padding: 17px 7%;
+}
+
+.brand {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 15px;
-  border-bottom: 1px solid #e3e9f5;
-  box-shadow: 0 3px 15px rgba(24, 47, 95, 0.05);
+  gap: 11px;
 }
 
-.logo {
-  color: #244fe0;
-  font-size: 25px;
+.logo-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: linear-gradient(135deg, #244fe0, #6383ff);
+  font-size: 24px;
   font-weight: 800;
-  letter-spacing: -0.7px;
 }
 
-header a {
-  color: #244fe0;
+.brand h2 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.brand small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+nav a {
+  color: #4c5872;
   text-decoration: none;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+nav a:hover { color: var(--blue); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 19px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--blue);
+  color: white;
   font-weight: 700;
+  text-decoration: none;
+  transition: .2s;
+}
+
+.btn:hover {
+  background: #193bb5;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: white;
+  color: var(--blue);
+  border: 1px solid #d8e1ff;
+}
+
+.btn-outline:hover {
+  background: #eef2ff;
+  color: var(--blue);
 }
 
 .hero {
-  padding: 90px 20px 85px;
+  padding: 78px 20px 88px;
   text-align: center;
   color: white;
   background:
-    radial-gradient(circle at 15% 20%, #537cf5 0, transparent 30%),
-    linear-gradient(135deg, #142c72, #2858dc 65%, #4979f5);
+    radial-gradient(circle at 15% 20%, #5277ef 0, transparent 34%),
+    radial-gradient(circle at 90% 80%, #4169df 0, transparent 35%),
+    linear-gradient(125deg, #111e4b, #2349ba);
+}
+
+.hero-label {
+  display: inline-block;
+  padding: 7px 14px;
+  border: 1px solid #ffffff40;
+  border-radius: 50px;
+  color: #e2e9ff;
+  background: #ffffff12;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .hero h1 {
   max-width: 850px;
-  margin: 0 auto 20px;
-  font-size: clamp(35px, 5.5vw, 60px);
-  line-height: 1.13;
-  letter-spacing: -1.5px;
+  margin: 23px auto 17px;
+  font-size: clamp(36px, 5.6vw, 63px);
+  line-height: 1.12;
+  letter-spacing: -1.8px;
 }
+
+.hero h1 span { color: #a9c1ff; }
 
 .hero p {
-  max-width: 650px;
+  max-width: 660px;
   margin: 0 auto;
-  color: #e8eeff;
-  font-size: 18px;
-  line-height: 1.8;
+  color: #e0e7ff;
+  font-size: 17px;
 }
 
-.container {
-  max-width: 1120px;
-  margin: 50px auto;
-  padding: 0 22px;
-}
-
-.container > h2 {
-  font-size: clamp(25px, 4vw, 34px);
-  letter-spacing: -0.6px;
-  margin-bottom: 8px;
-}
-
-.container > p {
-  color: #66738e;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 22px;
+.hero-actions {
   margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-.card {
-  background: white;
-  padding: 27px;
-  border-radius: 18px;
-  border: 1px solid #e4eaf7;
-  box-shadow: 0 8px 24px rgba(31, 58, 110, 0.06);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(31, 58, 110, 0.12);
-}
-
-.card h3 {
-  color: #244fe0;
-  font-size: 20px;
-  margin-top: 0;
-}
-
-.card p {
-  color: #64718a;
-}
-
-.button {
-  display: inline-block;
-  background: #2856df;
+.hero .btn-outline {
   color: white;
-  border: none;
-  padding: 13px 22px;
-  border-radius: 10px;
-  text-decoration: none;
-  cursor: pointer;
-  font-weight: 700;
-  margin-top: 15px;
-  box-shadow: 0 5px 12px rgba(40, 86, 223, 0.18);
-  transition: background 0.2s, transform 0.2s;
+  background: #ffffff12;
+  border-color: #ffffff60;
 }
 
-.button:hover {
-  background: #173bb5;
-  transform: translateY(-2px);
+.hero .btn-outline:hover { background: #ffffff25; }
+
+.trust-row {
+  margin-top: 32px;
+  color: #d7e1ff;
+  font-size: 13px;
 }
 
-.hero .button {
+.section {
+  max-width: 1150px;
+  padding: 0 22px;
+  margin: 65px auto;
+}
+
+.section-heading {
+  margin-bottom: 26px;
+}
+
+.eyebrow {
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.section-heading h2 {
+  margin: 7px 0;
+  font-size: clamp(26px, 4vw, 36px);
+  line-height: 1.25;
+  letter-spacing: -.7px;
+}
+
+.section-heading p {
+  margin: 7px 0 0;
+  color: var(--muted);
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 19px;
+}
+
+.feature {
   background: white;
-  color: #244fe0;
-  margin-top: 27px;
+  padding: 25px;
+  border: 1px solid var(--border);
+  border-radius: 17px;
+  box-shadow: 0 6px 22px #192c5710;
 }
 
-.form-box {
+.feature-icon {
+  width: 49px;
+  height: 49px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: #edf1ff;
+  font-size: 25px;
+}
+
+.feature h3 {
+  margin: 17px 0 7px;
+  font-size: 19px;
+}
+
+.feature p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0;
+}
+
+.builder {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+  gap: 25px;
+  align-items: start;
+}
+
+.panel {
   background: white;
-  padding: clamp(22px, 5vw, 40px);
+  border: 1px solid var(--border);
   border-radius: 20px;
-  margin-top: 42px;
-  border: 1px solid #e2e9f6;
-  box-shadow: 0 12px 35px rgba(31, 58, 110, 0.07);
+  padding: clamp(20px, 4vw, 34px);
+  box-shadow: 0 12px 35px #1a326510;
 }
 
-.form-box h2 {
-  font-size: clamp(24px, 4vw, 32px);
-  margin-top: 0;
+.panel h3 {
+  margin: 0 0 5px;
+  font-size: 23px;
 }
 
-.form-box p {
-  color: #68758e;
+.panel-intro {
+  margin: 0 0 23px;
+  color: var(--muted);
+  font-size: 14px;
 }
 
 label {
   display: block;
-  margin-top: 19px;
+  margin: 17px 0 7px;
   font-weight: 700;
   font-size: 14px;
 }
 
-input,
-select {
+input, select, textarea {
   width: 100%;
-  padding: 14px;
-  margin-top: 7px;
-  border: 1px solid #cfd8eb;
+  padding: 12px 13px;
+  border: 1px solid #d6deed;
   border-radius: 10px;
   background: #fbfcff;
-  color: #172344;
-  font: inherit;
+  color: var(--text);
+  outline: none;
 }
 
-input:focus,
-select:focus {
-  outline: 3px solid #dce6ff;
-  border-color: #2856df;
+textarea {
+  resize: vertical;
+  min-height: 140px;
 }
 
-#result {
-  margin-top: 25px;
-  padding: 25px;
-  background: #f1f5ff;
-  border: 1px solid #dce6ff;
+input:focus, select:focus, textarea:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px #244fe018;
+}
+
+input[type="file"] {
+  padding: 10px;
+  background: white;
+}
+
+.help {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.pack-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 11px;
+  margin-top: 8px;
+}
+
+.pack-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 13px;
+  border: 1px solid var(--border);
   border-radius: 12px;
-  line-height: 1.9;
-  white-space: pre-line;
-  overflow-wrap: anywhere;
+  background: white;
+  cursor: pointer;
+}
+
+.pack-option:has(input:checked) {
+  border-color: var(--blue);
+  background: #f0f4ff;
+}
+
+.pack-option input {
+  width: auto;
+  margin-top: 5px;
+  accent-color: var(--blue);
+}
+
+.pack-option strong {
+  display: block;
+  font-size: 14px;
+}
+
+.pack-option small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.full { width: 100%; margin-top: 22px; }
+
+.side-panel {
+  background: linear-gradient(150deg, #192e6b, #244fe0);
+  color: white;
+  border-radius: 20px;
+  padding: 27px;
+}
+
+.side-panel h3 {
+  font-size: 23px;
+  margin: 0 0 10px;
+}
+
+.side-panel > p {
+  color: #dce5ff;
+  font-size: 14px;
+}
+
+.step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: 23px;
+}
+
+.step-number {
+  flex: 0 0 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  color: #1d40b5;
+  background: white;
+  font-weight: 800;
+}
+
+.step strong { display: block; font-size: 14px; }
+.step small { color: #dce5ff; font-size: 12px; }
+
+.note {
+  margin-top: 23px;
+  padding: 13px;
+  border-radius: 10px;
+  background: #ffffff16;
+  font-size: 12px;
+  color: #e6ecff;
+}
+
+#paperOutput {
+  display: none;
+  margin-top: 30px;
+}
+
+.paper {
+  padding: 30px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+.paper-header {
+  text-align: center;
+  padding-bottom: 18px;
+  border-bottom: 2px solid #1a2744;
+}
+
+.school-logo {
+  display: block;
+  max-width: 95px;
+  max-height: 95px;
+  margin: 0 auto 10px;
+  object-fit: contain;
+}
+
+.paper-header h2 { margin: 5px 0; }
+.paper-header p { margin: 3px 0; }
+
+.paper-meta {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0;
+  font-size: 13px;
+}
+
+.paper h3 { margin-top: 24px; }
+
+.question {
+  margin: 13px 0;
+  line-height: 1.7;
+  break-inside: avoid;
+}
+
+.question ol { margin-top: 6px; }
+
+.paper-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.empty-state {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 22px;
 }
 
 footer {
+  background: #111e42;
+  color: white;
   text-align: center;
-  padding: 30px 15px;
-  background: #15254b;
-  color: #d9e2ff;
-  margin-top: 60px;
+  padding: 32px 20px;
 }
 
-@media (max-width: 600px) {
-  header {
-    padding: 15px 5%;
-  }
+footer p {
+  margin: 5px;
+  color: #d4ddf6;
+  font-size: 13px;
+}
 
-  .logo {
-    font-size: 20px;
-  }
+@media (max-width: 800px) {
+  nav { gap: 12px; }
+  nav a:not(.btn) { display: none; }
+  .builder { grid-template-columns: 1fr; }
+  .features { grid-template-columns: 1fr; }
+  .hero { padding: 65px 18px; }
+}
 
-  header a {
-    font-size: 13px;
-  }
-
-  .hero {
-    padding: 65px 18px;
-  }
-
-  .hero p {
-    font-size: 16px;
-  }
-
-  .container {
-    margin: 32px auto;
-    padding: 0 16px;
-  }
-
-  .cards {
-    grid-template-columns: 1fr;
-  }
-
-  .form-box {
-    padding: 22px 17px;
-  }
-
-  .button {
-    max-width: 100%;
-  }
+@media (max-width: 480px) {
+  header { padding: 12px 15px; }
+  .brand h2 { font-size: 19px; }
+  .brand small { font-size: 10px; }
+  .logo-icon { width: 39px; height: 39px; }
+  .two-col { grid-template-columns: 1fr; gap: 0; }
+  .pack-options { grid-template-columns: 1fr; }
+  .paper { padding: 17px; }
 }
 
 @media print {
-  body {
-    background: white;
-    color: black;
-  }
+  @page { size: A4; margin: 17mm; }
 
-  header,
-  .hero,
-  .container > h2,
-  .container > p,
-  .cards,
-  #paperForm,
-  footer,
-  #printButton {
+  body { background: white; color: black; font-size: 11pt; }
+  header, .hero, #features, #builderSection,
+  footer, .paper-actions, .screen-only { display: none !important; }
+
+  .section {
     display: none !important;
-  }
-
-  .container,
-  .form-box {
-    max-width: none;
     margin: 0;
     padding: 0;
-    border: none;
+    max-width: none;
+  }
+
+  #paperOutput {
+    display: block !important;
+    margin: 0;
+  }
+
+  #paperOutput .section-heading { display: none; }
+
+  .paper {
+    display: block;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
     box-shadow: none;
   }
 
-  #result {
-    background: white;
-    border: none;
-    color: black;
-    padding: 0;
-  }
+  .paper-header { border-bottom: 2px solid black; }
+  .question { color: black; }
 }
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo-icon">S</div>
+    <div>
+      <h2>SyllabusPaper</h2>
+      <small>Smarter question papers</small>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#features">Features</a>
+    <a href="#builderSection">Create Paper</a>
+    <a class="btn" href="#builderSection">Get Started →</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-label">✦ A smarter way for teachers</div>
+
+  <h1>Turn your syllabus into <span>practice papers.</span></h1>
+
+  <p>
+    Create school-branded question papers for classroom practice,
+    revision, and exam preparation. Choose a question format and
+    prepare a printable paper in minutes.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#builderSection" class="btn">Create a Question Paper →</a>
+    <a href="#features" class="btn btn-outline">Explore Features</a>
+  </div>
+
+  <div class="trust-row">
+    ✓ Simple to use &nbsp; · &nbsp; ✓ Print-friendly &nbsp; · &nbsp; ✓ Teacher-focused
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="section-heading">
+    <span class="eyebrow">Made for schools</span>
+    <h2>Everything starts with your syllabus.</h2>
+    <p>A simple workspace for preparing practice questions and printable papers.</p>
+  </div>
+
+  <div class="features">
+    <article class="feature">
+      <div class="feature-icon">📚</div>
+      <h3>Syllabus-based</h3>
+      <p>Enter your chapter names, topics, or syllabus text to prepare a practice paper.</p>
+    </article>
+
+    <article class="feature">
+      <div class="feature-icon">🎯</div>
+      <h3>Different question packs</h3>
+      <p>Prepare long-answer, short-answer, general practice, and multiple-choice questions.</p>
+    </article>
+
+    <article class="feature">
+      <div class="feature-icon">🖨️</div>
+      <h3>Ready to print</h3>
+      <p>Add school details, review your questions, and print or save the paper as a PDF.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="builderSection">
+  <div class="section-heading">
+    <span class="eyebrow">Paper creator</span>
+    <h2>Create your question paper</h2>
+    <p>Fill in the details below. Fields marked required must be completed.</p>
+  </div>
+
+  <div class="builder">
+    <div class="panel">
+      <h3>Paper details</h3>
+      <p class="panel-intro">Customize your paper for your school and students.</p>
+
+      <form id="paperForm">
+        <label for="schoolName">School name *</label>
+        <input id="schoolName" required maxlength="120"
+          placeholder="e.g. ABC High School">
+
+        <label for="schoolLogo">School logo (optional)</label>
+        <input id="schoolLogo" type="file" accept="image/*">
+        <p class="help">Choose an image from your device. It is used locally in this browser.</p>
+
+        <div class="two-col">
+          <div>
+            <label for="className">Class / Grade *</label>
+            <select id="className" required>
+              <option value="">Select class</option>
+              <option>Class 1</option><option>Class 2</option>
+              <option>Class 3</option><option>Class 4</option>
+              <option>Class 5</option><option>Class 6</option>
+              <option>Class 7</option><option>Class 8</option>
+              <option>Class 9</option><option>Class 10</option>
+              <option>Class 11</option><option>Class 12</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="subject">Subject *</label>
+            <input id="subject" required maxlength="80"
+              placeholder="e.g. Mathematics">
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <label for="examName">Exam / Practice name</label>
+            <input id="examName" maxlength="100"
+              placeholder="e.g. Unit Test 1">
+          </div>
+
+          <div>
+            <label for="duration">Duration</label>
+            <select id="duration">
+              <option>30 minutes</option>
+              <option>1 hour</option>
+              <option>1 hour 30 minutes</option>
+              <option>2 hours</option>
+              <option>3 hours</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="syllabus">Syllabus / Chapter topics *</label>
+        <textarea id="syllabus" required
+          placeholder="Enter one chapter or topic per line.&#10;&#10;Example:&#10;Fractions&#10;Decimals&#10;Percentages&#10;Basic geometry"></textarea>
+        <p class="help">For this demo, enter chapter or topic names on separate lines. Do not upload confidential student information.</p>
+
+        <label>Choose question pack *</label>
+        <div class="pack-options">
+          <label class="pack-option">
+            <input type="radio" name="pack" value="long" checked>
+            <span><strong>Long Answer</strong><small>Detailed response practice</small></span>
+          </label>
+
+          <label class="pack-option">
+            <input type="radio" name="pack" value="short">
+            <span><strong>Short Answer</strong><small>Brief responses</small></span>
+          </label>
+
+          <label class="pack-option">
+            <input type="radio" name="pack" value="average">
+            <span><strong>Mixed Practice</strong><small>Different question formats</small></span>
+          </label>
+
+          <label class="pack-option">
+            <input type="radio" name="pack" value="mcq">
+            <span><strong>MCQ Pack</strong><small>Multiple-choice practice</small></span>
+          </label>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <label for="questionCount">Number of questions</label>
+            <select id="questionCount">
+              <option value="5">5 questions</option>
+              <option value="10" selected>10 questions</option>
+              <option value="15">15 questions</option>
+              <option value="20">20 questions</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="marks">Marks per question</label>
+            <select id="marks">
+              <option value="1">1 mark</option>
+              <option value="2">2 marks</option>
+              <option value="3">3 marks</option>
+              <option value="5" selected>5 marks</option>
+              <option value="10">10 marks</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn full" type="submit">Generate Practice Paper →</button>
+      </form>
+
+      <p class="empty-state">
+        Demo note: questions are created from general templates using
+        the topic names you enter. This version does not use AI or verify
+        subject-specific answers.
+      </p>
+    </div>
+
+    <aside class="side-panel">
+      <h3>Your classroom, your paper.</h3>
+      <p>Prepare a draft practice paper and review every question before distributing it to students.</p>
+
+      <div class="step">
+        <div class="step-number">1</div>
+        <div><strong>Enter your details</strong><small>Add school, class, subject, and syllabus topics.</small></div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div><strong>Choose a question pack</strong><small>Select long, short, mixed, or MCQ practice.</small></div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div><strong>Review and print</strong><small>Check the paper and use the browser's print or PDF option.</small></div>
+      </div>
+
+      <div class="note">
+        💡 Tip: Use one topic per line to make the generated practice paper easier to review.
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="section" id="paperOutput">
+  <div class="section-heading screen-only">
+    <span class="eyebrow">Your draft</span>
+    <h2>Generated practice paper</h2>
+    <p>Review the questions carefully before printing.</p>
+  </div>
+
+  <div class="paper" id="paperContent"></div>
+
+  <div class="paper-actions screen-only">
+    <button class="btn" id="printButton" type="button">🖨️ Print / Save as PDF</button>
+    <button class="btn btn-outline" id="editButton" type="button">← Edit details</button>
+  </div>
+</section>
+
+<footer>
+  <div class="brand" style="justify-content:center; margin-bottom:12px;">
+    <div class="logo-icon">S</div>
+    <div style="text-align:left">
+      <h2 style="color:white;">SyllabusPaper</h2>
+      <small style="color:#d4ddf6;">Smarter question papers</small>
+    </div>
+  </div>
+  <p>A practice-paper creation demo for schools and teachers.</p>
+  <p>Review all questions before using them in an examination.</p>
+</footer>
+
+<script>
+const form = document.getElementById("paperForm");
+const output = document.getElementById("paperOutput");
+const paperContent = document.getElementById("paperContent");
+const logoInput = document.getElementById("schoolLogo");
+
+let logoData = "";
+
+logoInput.addEventListener("change", function () {
+  const file = this.files && this.files[0];
+  logoData = "";
+
+  if (!file) return;
+
+  if (!file.type.startsWith("image/")) {
+    alert("Please select an image file for the school logo.");
+    this.value = "";
+    return;
+  }
+
+  if (file.size > 2 * 1024 * 1024) {
+    alert("Please choose a logo smaller than 2 MB.");
+    this.value = "";
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = () => { logoData = reader.result; };
+  reader.readAsDataURL(file);
+});
+
+function escapeHTML(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[char]);
+}
+
+function getQuestions(topic, pack) {
+  const questions = [];
+
+  if (pack === "long") {
+    questions.push(`Explain ${topic} in detail with suitable examples.`);
+    questions.push(`Describe the important concepts of ${topic}.`);
+    questions.push(`Discuss the significance and applications of ${topic}.`);
+    questions.push(`Write a detailed note on ${topic}.`);
+  } else if (pack === "short") {
+    questions.push(`What is ${topic}?`);
+    questions.push(`Write a short note on ${topic}.`);
+    questions.push(`State two important points about ${topic}.`);
+    questions.push(`Mention the key features of ${topic}.`);
+  } else if (pack === "mcq") {
+    questions.push(`Which statement correctly describes ${topic}?`);
+    questions.push(`Which of the following is most closely related to ${topic}?`);
+    questions.push(`Which option best explains the importance of ${topic}?`);
+    questions.push(`Which statement about ${topic} should be checked against your textbook?`);
+  } else {
+    questions.push(`Define ${topic}.`);
+    questions.push(`Explain the main ideas of ${topic}.`);
+    questions.push(`Give an example related to ${topic}.`);
+    questions.push(`Describe one important application of ${topic}.`);
+  }
+
+  return questions;
+}
+
+function getOptions(topic, index) {
+  return [
+    `A concept related to ${topic}`,
+    `An unrelated concept`,
+    `A different topic`,
+    `None of these`
+  ];
+}
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const school = document.getElementById("schoolName").value.trim();
+  const className = document.getElementById("className").value;
+  const subject = document.getElementById("subject").value.trim();
+  const exam = document.getElementById("examName").value.trim() || "Practice Test";
+  const duration = document.getElementById("duration").value;
+  const syllabus = document.getElementById("syllabus").value.trim();
+  const count = Number(document.getElementById("questionCount").value);
+  const marks = Number(document.getElementById("marks").value);
+  const pack = document.querySelector('input[name="pack"]:checked').value;
+
+  const topics = syllabus.split(/\n|,/)
+    .map(topic => topic.trim())
+    .filter(Boolean);
+
+  if (!topics.length) {
+    alert("Please enter at least one syllabus topic.");
+    return;
+  }
+
+  const packNames = {
+    long: "Long Answer Practice",
+    short: "Short Answer Practice",
+    average: "Mixed Practice",
+    mcq: "Multiple-Choice Practice"
+  };
+
+  const totalMarks = count * marks;
+  let questionNumber = 0;
+  let questionHTML = "";
+
+  for (let i = 0; i < count; i++) {
+    const topic = topics[i % topics.length];
+    const options = getQuestions(topic, pack);
+    const question = options[Math.floor(i / topics.length) % options.length];
+
+    questionNumber++;
+
+    questionHTML += `<div class="question">
+      <strong>${questionNumber}. ${escapeHTML(question)}</strong>
+      <span> (${marks} mark${marks === 1 ? "" : "s"})</span>`;
+
+    if (pack === "mcq") {
+      const mcqOptions = getOptions(topic, i);
+      questionHTML += "<ol type='A'>";
+      mcqOptions.forEach(option => {
+        questionHTML += `<li>${escapeHTML(option)}</li>`;
+      });
+      questionHTML += "</ol>";
+    }
+
+    questionHTML += "</div>";
+  }
+
+  const logoHTML = logoData
+    ? `<img class="school-logo" src="${logoData}" alt="School logo">`
+    : "";
+
+  paperContent.innerHTML = `
+    <div class="paper-header">
+      ${logoHTML}
+      <h2>${escapeHTML(school)}</h2>
+      <p><strong>${escapeHTML(exam)}</strong></p>
+      <p>${escapeHTML(subject)} | ${escapeHTML(className)}</p>
+      <p>${escapeHTML(packNames[pack])}</p>
+    </div>
+
+    <div class="paper-meta">
+      <span><strong>Duration:</strong> ${escapeHTML(duration)}</span>
+      <span><strong>Maximum Marks:</strong> ${totalMarks}</span>
+      <span><strong>Date:</strong> ______________</span>
+    </div>
+
+    <p><strong>Instructions:</strong> Read each question carefully and answer as directed by your teacher.</p>
+
+    <h3>Section A — ${escapeHTML(packNames[pack])}</h3>
+    ${questionHTML}
+
+    <p style="text-align:center; margin-top:30px;"><strong>— End of Question Paper —</strong></p>
+    <p style="font-size:12px; color:#68758e;">Teacher note: These are template-generated practice questions. Verify and edit the questions and options against the actual syllabus before use.</p>
+  `;
+
+  output.style.display = "block";
+  output.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+document.getElementById("printButton").addEventListener("click", function () {
+  window.print();
+});
+
+document.getElementById("editButton").addEventListener("click", function () {
+  document.getElementById("builderSection").scrollIntoView({
+    behavior: "smooth"
+  });
+});
+</script>
+
+</body>
+</html>
