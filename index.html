@@ -1,220 +1,276 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SyllabusPaper - School Question Paper Generator</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f7fc;
-      color: #17233f;
-    }
-    header {
-      background: white;
-      padding: 18px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #e5eaf3;
-    }
-    .logo { color: #2457e6; font-size: 24px; font-weight: bold; }
-    header a { color: #2457e6; text-decoration: none; font-weight: bold; }
-    .hero {
-      padding: 75px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #1739a8, #3977f6);
-      color: white;
-    }
-    .hero h1 { font-size: clamp(32px, 5vw, 52px); margin: 0 0 18px; }
-    .hero p { max-width: 650px; margin: auto; line-height: 1.8; }
-    .container { max-width: 1000px; margin: 35px auto; padding: 0 18px; }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-      margin-top: 24px;
-    }
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 14px;
-      border: 1px solid #e5eaf3;
-    }
-    .card h3 { color: #2457e6; }
-    .button {
-      display: inline-block;
-      background: #2457e6;
-      color: white;
-      border: 0;
-      padding: 13px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      cursor: pointer;
-      font-weight: bold;
-      margin-top: 15px;
-    }
-    .form-box {
-      background: white;
-      padding: 25px;
-      border-radius: 14px;
-      margin-top: 30px;
-      border: 1px solid #e5eaf3;
-    }
-    label { display: block; margin-top: 15px; font-weight: bold; }
-    input, select {
-      width: 100%;
-      padding: 12px;
-      margin-top: 7px;
-      border: 1px solid #ccd5e5;
-      border-radius: 7px;
-    }
-    #result {
-      margin-top: 20px;
-      padding: 18px;
-      background: #edf3ff;
-      border-radius: 9px;
-      line-height: 1.8;
-      white-space: pre-line;
-    }
-    footer { text-align: center; padding: 25px; color: #71809a; }
-  </style>
-</head>
-<body>
+* {
+  box-sizing: border-box;
+}
 
-  <header>
-    <div class="logo">✎ SyllabusPaper</div>
-    <a href="#generator">Create a Paper</a>
-  </header>
+html {
+  scroll-behavior: smooth;
+}
 
-  <section class="hero">
-    <h1>Better Question Papers.<br>Smarter Preparation.</h1>
-    <p>
-      A simple platform for schools and teachers to prepare organized
-      question papers from their syllabus.
-    </p>
-    <a class="button" href="#generator">Get Started →</a>
-  </section>
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f4f7ff;
+  color: #172344;
+  line-height: 1.6;
+}
 
-  <main class="container">
-    <h2>Everything your school needs</h2>
-    <p>Choose a question format to prepare classroom practice papers.</p>
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.97);
+  padding: 17px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid #e3e9f5;
+  box-shadow: 0 3px 15px rgba(24, 47, 95, 0.05);
+}
 
-    <div class="cards">
-      <div class="card">
-        <h3>📘 Long Answers</h3>
-        <p>Descriptive questions for detailed explanations and exam preparation.</p>
-      </div>
-      <div class="card">
-        <h3>📗 Short Answers</h3>
-        <p>Brief questions to review important concepts and definitions.</p>
-      </div>
-      <div class="card">
-        <h3>☑️ MCQ Questions</h3>
-        <p>Multiple-choice practice questions with answer options.</p>
-      </div>
-    </div>
+.logo {
+  color: #244fe0;
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -0.7px;
+}
 
-    <section class="form-box" id="generator">
-      <h2>Try the Question Paper Generator</h2>
-      <p>Enter your details to create a sample paper.</p>
+header a {
+  color: #244fe0;
+  text-decoration: none;
+  font-weight: 700;
+}
 
-      <form id="paperForm">
-        <label for="school">School Name</label>
-        <input id="school" placeholder="Enter school name" required>
+.hero {
+  padding: 90px 20px 85px;
+  text-align: center;
+  color: white;
+  background:
+    radial-gradient(circle at 15% 20%, #537cf5 0, transparent 30%),
+    linear-gradient(135deg, #142c72, #2858dc 65%, #4979f5);
+}
 
-        <label for="grade">Class</label>
-        <select id="grade" required>
-          <option value="">Select class</option>
-          <option>Class 6</option>
-          <option>Class 7</option>
-          <option>Class 8</option>
-          <option>Class 9</option>
-          <option>Class 10</option>
-        </select>
+.hero h1 {
+  max-width: 850px;
+  margin: 0 auto 20px;
+  font-size: clamp(35px, 5.5vw, 60px);
+  line-height: 1.13;
+  letter-spacing: -1.5px;
+}
 
-        <label for="subject">Subject</label>
-        <select id="subject" required>
-          <option value="">Select subject</option>
-          <option>Mathematics</option>
-          <option>Science</option>
-          <option>English</option>
-          <option>Social Studies</option>
-          <option>Computer Science</option>
-        </select>
+.hero p {
+  max-width: 650px;
+  margin: 0 auto;
+  color: #e8eeff;
+  font-size: 18px;
+  line-height: 1.8;
+}
 
-        <label for="chapter">Chapter or Topic</label>
-        <input id="chapter" placeholder="Enter chapter name" required>
+.container {
+  max-width: 1120px;
+  margin: 50px auto;
+  padding: 0 22px;
+}
 
-        <label for="pack">Question Pack</label>
-        <select id="pack">
-          <option value="long">Long Answers</option>
-          <option value="short">Short Answers</option>
-          <option value="mcq">MCQs</option>
-        </select>
+.container > h2 {
+  font-size: clamp(25px, 4vw, 34px);
+  letter-spacing: -0.6px;
+  margin-bottom: 8px;
+}
 
-        <button class="button" type="submit">Generate Sample Paper</button>
-      </form>
+.container > p {
+  color: #66738e;
+}
 
-      <div id="result" hidden></div>
-      <button id="printButton" class="button" type="button" hidden
-        onclick="window.print()">Print / Save PDF</button>
-    </section>
-  </main>
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+  margin-top: 28px;
+}
 
-  <footer>
-    © 2026 SyllabusPaper | Built for schools and teachers
-  </footer>
+.card {
+  background: white;
+  padding: 27px;
+  border-radius: 18px;
+  border: 1px solid #e4eaf7;
+  box-shadow: 0 8px 24px rgba(31, 58, 110, 0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 
-  <script>
-    document.getElementById("paperForm").addEventListener("submit", function(event) {
-      event.preventDefault();
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(31, 58, 110, 0.12);
+}
 
-      const school = document.getElementById("school").value.trim();
-      const grade = document.getElementById("grade").value;
-      const subject = document.getElementById("subject").value;
-      const chapter = document.getElementById("chapter").value.trim();
-      const pack = document.getElementById("pack").value;
+.card h3 {
+  color: #244fe0;
+  font-size: 20px;
+  margin-top: 0;
+}
 
-      let questions;
+.card p {
+  color: #64718a;
+}
 
-      if (pack === "long") {
-        questions = [
-          "1. Explain " + chapter + " with suitable examples.",
-          "2. Describe the important concepts of " + chapter + ".",
-          "3. Write a detailed note on " + chapter + "."
-        ];
-      } else if (pack === "short") {
-        questions = [
-          "1. Define " + chapter + ".",
-          "2. List two important points about " + chapter + ".",
-          "3. Why is " + chapter + " important?",
-          "4. Give one example related to " + chapter + "."
-        ];
-      } else {
-        questions = [
-          "1. Which is an important first step when studying " + chapter + "?\nA. Learn its key concepts\nB. Ignore the topic\nC. Skip revision\nD. Avoid examples",
-          "2. Which activity helps practise " + chapter + "?\nA. Practise questions\nB. Ignore the syllabus\nC. Skip learning\nD. Avoid revision"
-        ];
-      }
+.button {
+  display: inline-block;
+  background: #2856df;
+  color: white;
+  border: none;
+  padding: 13px 22px;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 700;
+  margin-top: 15px;
+  box-shadow: 0 5px 12px rgba(40, 86, 223, 0.18);
+  transition: background 0.2s, transform 0.2s;
+}
 
-      const result = document.getElementById("result");
-      result.textContent =
-        school + "\n" +
-        "Class: " + grade + "\n" +
-        "Subject: " + subject + "\n" +
-        "Chapter: " + chapter + "\n\n" +
-        "QUESTION PAPER\n\n" + questions.join("\n\n") +
-        "\n\nNote: These are sample templates. Review questions before use.";
+.button:hover {
+  background: #173bb5;
+  transform: translateY(-2px);
+}
 
-      result.hidden = false;
-      document.getElementById("printButton").hidden = false;
-      result.scrollIntoView({ behavior: "smooth" });
-    });
-  </script>
+.hero .button {
+  background: white;
+  color: #244fe0;
+  margin-top: 27px;
+}
 
-</body>
-</html>
+.form-box {
+  background: white;
+  padding: clamp(22px, 5vw, 40px);
+  border-radius: 20px;
+  margin-top: 42px;
+  border: 1px solid #e2e9f6;
+  box-shadow: 0 12px 35px rgba(31, 58, 110, 0.07);
+}
+
+.form-box h2 {
+  font-size: clamp(24px, 4vw, 32px);
+  margin-top: 0;
+}
+
+.form-box p {
+  color: #68758e;
+}
+
+label {
+  display: block;
+  margin-top: 19px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 14px;
+  margin-top: 7px;
+  border: 1px solid #cfd8eb;
+  border-radius: 10px;
+  background: #fbfcff;
+  color: #172344;
+  font: inherit;
+}
+
+input:focus,
+select:focus {
+  outline: 3px solid #dce6ff;
+  border-color: #2856df;
+}
+
+#result {
+  margin-top: 25px;
+  padding: 25px;
+  background: #f1f5ff;
+  border: 1px solid #dce6ff;
+  border-radius: 12px;
+  line-height: 1.9;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 15px;
+  background: #15254b;
+  color: #d9e2ff;
+  margin-top: 60px;
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 15px 5%;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  header a {
+    font-size: 13px;
+  }
+
+  .hero {
+    padding: 65px 18px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .container {
+    margin: 32px auto;
+    padding: 0 16px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .form-box {
+    padding: 22px 17px;
+  }
+
+  .button {
+    max-width: 100%;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  header,
+  .hero,
+  .container > h2,
+  .container > p,
+  .cards,
+  #paperForm,
+  footer,
+  #printButton {
+    display: none !important;
+  }
+
+  .container,
+  .form-box {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  #result {
+    background: white;
+    border: none;
+    color: black;
+    padding: 0;
+  }
+}
