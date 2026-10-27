@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SyllabusPaper - School Question Paper Generator</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f7fc;
+      color: #17233f;
+    }
+    header {
+      background: white;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e5eaf3;
+    }
+    .logo { color: #2457e6; font-size: 24px; font-weight: bold; }
+    header a { color: #2457e6; text-decoration: none; font-weight: bold; }
+    .hero {
+      padding: 75px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #1739a8, #3977f6);
+      color: white;
+    }
+    .hero h1 { font-size: clamp(32px, 5vw, 52px); margin: 0 0 18px; }
+    .hero p { max-width: 650px; margin: auto; line-height: 1.8; }
+    .container { max-width: 1000px; margin: 35px auto; padding: 0 18px; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      border: 1px solid #e5eaf3;
+    }
+    .card h3 { color: #2457e6; }
+    .button {
+      display: inline-block;
+      background: #2457e6;
+      color: white;
+      border: 0;
+      padding: 13px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+    .form-box {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      margin-top: 30px;
+      border: 1px solid #e5eaf3;
+    }
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 7px;
+      border: 1px solid #ccd5e5;
+      border-radius: 7px;
+    }
+    #result {
+      margin-top: 20px;
+      padding: 18px;
+      background: #edf3ff;
+      border-radius: 9px;
+      line-height: 1.8;
+      white-space: pre-line;
+    }
+    footer { text-align: center; padding: 25px; color: #71809a; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">✎ SyllabusPaper</div>
+    <a href="#generator">Create a Paper</a>
+  </header>
+
+  <section class="hero">
+    <h1>Better Question Papers.<br>Smarter Preparation.</h1>
+    <p>
+      A simple platform for schools and teachers to prepare organized
+      question papers from their syllabus.
+    </p>
+    <a class="button" href="#generator">Get Started →</a>
+  </section>
+
+  <main class="container">
+    <h2>Everything your school needs</h2>
+    <p>Choose a question format to prepare classroom practice papers.</p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>📘 Long Answers</h3>
+        <p>Descriptive questions for detailed explanations and exam preparation.</p>
+      </div>
+      <div class="card">
+        <h3>📗 Short Answers</h3>
+        <p>Brief questions to review important concepts and definitions.</p>
+      </div>
+      <div class="card">
+        <h3>☑️ MCQ Questions</h3>
+        <p>Multiple-choice practice questions with answer options.</p>
+      </div>
+    </div>
+
+    <section class="form-box" id="generator">
+      <h2>Try the Question Paper Generator</h2>
+      <p>Enter your details to create a sample paper.</p>
+
+      <form id="paperForm">
+        <label for="school">School Name</label>
+        <input id="school" placeholder="Enter school name" required>
+
+        <label for="grade">Class</label>
+        <select id="grade" required>
+          <option value="">Select class</option>
+          <option>Class 6</option>
+          <option>Class 7</option>
+          <option>Class 8</option>
+          <option>Class 9</option>
+          <option>Class 10</option>
+        </select>
+
+        <label for="subject">Subject</label>
+        <select id="subject" required>
+          <option value="">Select subject</option>
+          <option>Mathematics</option>
+          <option>Science</option>
+          <option>English</option>
+          <option>Social Studies</option>
+          <option>Computer Science</option>
+        </select>
+
+        <label for="chapter">Chapter or Topic</label>
+        <input id="chapter" placeholder="Enter chapter name" required>
+
+        <label for="pack">Question Pack</label>
+        <select id="pack">
+          <option value="long">Long Answers</option>
+          <option value="short">Short Answers</option>
+          <option value="mcq">MCQs</option>
+        </select>
+
+        <button class="button" type="submit">Generate Sample Paper</button>
+      </form>
+
+      <div id="result" hidden></div>
+      <button id="printButton" class="button" type="button" hidden
+        onclick="window.print()">Print / Save PDF</button>
+    </section>
+  </main>
+
+  <footer>
+    © 2026 SyllabusPaper | Built for schools and teachers
+  </footer>
+
+  <script>
+    document.getElementById("paperForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const school = document.getElementById("school").value.trim();
+      const grade = document.getElementById("grade").value;
+      const subject = document.getElementById("subject").value;
+      const chapter = document.getElementById("chapter").value.trim();
+      const pack = document.getElementById("pack").value;
+
+      let questions;
+
+      if (pack === "long") {
+        questions = [
+          "1. Explain " + chapter + " with suitable examples.",
+          "2. Describe the important concepts of " + chapter + ".",
+          "3. Write a detailed note on " + chapter + "."
+        ];
+      } else if (pack === "short") {
+        questions = [
+          "1. Define " + chapter + ".",
+          "2. List two important points about " + chapter + ".",
+          "3. Why is " + chapter + " important?",
+          "4. Give one example related to " + chapter + "."
+        ];
+      } else {
+        questions = [
+          "1. Which is an important first step when studying " + chapter + "?\nA. Learn its key concepts\nB. Ignore the topic\nC. Skip revision\nD. Avoid examples",
+          "2. Which activity helps practise " + chapter + "?\nA. Practise questions\nB. Ignore the syllabus\nC. Skip learning\nD. Avoid revision"
+        ];
+      }
+
+      const result = document.getElementById("result");
+      result.textContent =
+        school + "\n" +
+        "Class: " + grade + "\n" +
+        "Subject: " + subject + "\n" +
+        "Chapter: " + chapter + "\n\n" +
+        "QUESTION PAPER\n\n" + questions.join("\n\n") +
+        "\n\nNote: These are sample templates. Review questions before use.";
+
+      result.hidden = false;
+      document.getElementById("printButton").hidden = false;
+      result.scrollIntoView({ behavior: "smooth" });
+    });
+  </script>
+
+</body>
+</html>
