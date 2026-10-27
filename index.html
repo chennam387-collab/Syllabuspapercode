@@ -543,10 +543,183 @@ footer a { color:var(--cyan); }
   }
   .paper-actions,#copyStatus { display:none !important; }
 }
+/* Full website animated technology background */
+body {
+  background: #07152e;
+  position: relative;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 30%, #087bff35, transparent 35%),
+    radial-gradient(circle at 80% 70%, #00e5ff20, transparent 35%),
+    linear-gradient(120deg, #061126, #0b2044, #07152e);
+  background-size: 200% 200%;
+  animation: siteGlow 14s ease-in-out infinite alternate;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .16;
+  background-image:
+    linear-gradient(#61a5ff30 1px, transparent 1px),
+    linear-gradient(90deg, #61a5ff30 1px, transparent 1px);
+  background-size: 42px 42px;
+  animation: siteGrid 22s linear infinite;
+}
+@keyframes siteGlow {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+@keyframes siteGrid {
+  to { background-position: 84px 84px; }
+}
+/* One-line security ticker */
+.security-line {
+  overflow: hidden;
+  white-space: nowrap;
+  background: #061126;
+  border-top: 1px solid #50e6ff55;
+  border-bottom: 1px solid #50e6ff55;
+  color: #bcecff;
+  padding: 12px 0;
+  font-size: 13px;
+}
+.security-line span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: securityScroll 32s linear infinite;
+}
+.security-line strong { color: #50e6ff; }
+@keyframes securityScroll {
+  to { transform: translateX(-100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body::before, body::after, .security-line span {
+    animation: none;
+  }
+  .security-line { white-space: normal; }
+  .security-line span { padding: 0 12px; }
+}
+
+/* Animated technology background */
+body {
+  background: #07152e;
+  position: relative;
+  isolation: isolate;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 25%, #087bff55, transparent 35%),
+    radial-gradient(circle at 85% 75%, #00e5ff35, transparent 35%),
+    linear-gradient(135deg, #061126, #102b50, #07152e);
+  background-size: 200% 200%;
+  animation: techGlow 12s ease-in-out infinite alternate;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .2;
+  background-image:
+    linear-gradient(#61a5ff35 1px, transparent 1px),
+    linear-gradient(90deg, #61a5ff35 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: techGrid 18s linear infinite;
+}
+
+@keyframes techGlow {
+  from { background-position: 0% 0%; }
+  to { background-position: 100% 100%; }
+}
+
+@keyframes techGrid {
+  to { background-position: 80px 80px; }
+}
+
+/* Keep page content above the background */
+body > * {
+  position: relative;
+}
+
+/* Animated security ticker */
+.security-line {
+  overflow: hidden;
+  white-space: nowrap;
+  background: #061126;
+  border-top: 1px solid #50e6ff66;
+  border-bottom: 1px solid #50e6ff66;
+  color: #c8efff;
+  padding: 13px 0;
+  font-size: 13px;
+}
+
+.security-line span {
+  display: inline-block;
+  padding-left: 100%;
+  animation: securityScroll 35s linear infinite;
+}
+
+.security-line strong {
+  color: #50e6ff;
+}
+
+@keyframes securityScroll {
+  to { transform: translateX(-100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after,
+  .security-line span {
+    animation: none;
+  }
+
+  .security-line {
+    white-space: normal;
+  }
+
+  .security-line span {
+    padding: 0 12px;
+  }
+}
+
 </style>
 </head>
 
 <body>
+<div class="security-line">
+  <span>
+    🔐 <strong>SYLLABUSPAPER SECURITY</strong>
+    &nbsp; • Privacy Awareness
+    &nbsp; • Safe Learning
+    &nbsp; • Protect Personal Information
+    &nbsp; • Verify Official Study Resources
+    &nbsp; • Keep Passwords Private
+    &nbsp; • Use Secure HTTPS Connections
+    &nbsp; • External Websites Have Their Own Policies
+    &nbsp; • This Version Does Not Provide Secure Login or a Private Database
+    &nbsp; • Learn Safely, Learn Smartly 🔐
+  </span>
+</div>
+
+<div class="security-line"><span>🔐 <strong>SYLLABUSPAPER SECURITY:</strong> Privacy Awareness • Safe Learning • Input Validation • Secure HTTPS Hosting • No Passwords in Topic Fields • Verify Official Resources • Protect Personal Information • External Sites Have Their Own Policies • No Secure Login or Private Database Is Provided in This Version • Learn Safely, Learn Smartly 🔐</span></div>
 <nav>
   <a class="logo" href="#home">Syllabus<span>Paper</span></a>
   <div class="navlinks">
