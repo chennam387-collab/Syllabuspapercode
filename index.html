@@ -527,6 +527,119 @@ footer {
     scroll-behavior: auto !important;
   }
 }
+.generator {
+  padding: 70px 7%;
+  background: linear-gradient(135deg, #07152e, #102b55);
+  color: #f7faff;
+}
+.generator-wrap {
+  max-width: 1000px;
+  margin: auto;
+}
+.generator h2 {
+  text-align: center;
+  font-size: clamp(28px, 4vw, 42px);
+}
+.generator-intro {
+  text-align: center;
+  color: #bfd0ed;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.generator-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid #ffffff20;
+  padding: 25px;
+  border-radius: 18px;
+}
+.generator-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.generator-form input,
+.generator-form select {
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #526b91;
+  border-radius: 9px;
+  background: #102443;
+  color: white;
+}
+.generator-form .full {
+  grid-column: 1 / -1;
+}
+.generate-btn {
+  width: 100%;
+  padding: 15px;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #176bff, #36c8f5);
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+}
+.paper-output {
+  display: none;
+  margin-top: 28px;
+  padding: 30px;
+  background: white;
+  color: #18243a;
+  border-radius: 14px;
+}
+.paper-output h3,
+.paper-output h4 {
+  text-align: center;
+}
+.paper-output li {
+  margin: 15px 0;
+  line-height: 1.7;
+}
+.paper-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.paper-actions button {
+  padding: 12px 17px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  background: #176bff;
+  color: white;
+}
+.generator-note {
+  color: #b9cbea;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 18px;
+}
+@media(max-width:600px) {
+  .generator { padding: 50px 5%; }
+  .generator-form { grid-template-columns: 1fr; padding: 17px; }
+  .generator-form .full { grid-column: auto; }
+}
+@media print {
+  body * { visibility: hidden !important; }
+  #paperOutput, #paperOutput * { visibility: visible !important; }
+  #paperOutput {
+    display: block !important;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    color: black;
+    background: white;
+  }
+  .paper-actions { display: none !important; }
+}
 </style>
 </head>
 
