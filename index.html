@@ -734,6 +734,97 @@ footer {
   </div>
 </section>
 
+<section class="generator" id="question-generator">
+  <div class="generator-wrap">
+    <h2>Question Paper Generator</h2>
+    <p class="generator-intro">
+      Select your class, subject and chapter to prepare a printable
+      practice question paper.
+    </p>
+
+    <form class="generator-form" id="generatorForm">
+      <div>
+        <label for="paperClass">Class</label>
+        <select id="paperClass">
+          <option>Class 6</option>
+          <option>Class 7</option>
+          <option>Class 8</option>
+          <option>Class 9</option>
+          <option>Class 10</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="paperSubject">Subject</label>
+        <select id="paperSubject">
+          <option value="Telugu">Telugu</option>
+          <option value="Hindi">Hindi</option>
+          <option value="English">English</option>
+          <option value="Mathematics">Mathematics</option>
+          <option value="Physics">Physics</option>
+          <option value="Biology">Biology</option>
+          <option value="Social Studies">Social Studies</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="paperLanguage">Question paper language</label>
+        <select id="paperLanguage">
+          <option value="English">English</option>
+          <option value="Telugu">తెలుగు</option>
+          <option value="Hindi">हिन्दी</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="paperType">Question type</label>
+        <select id="paperType">
+          <option value="mixed">Mixed practice paper</option>
+          <option value="mcq">Multiple choice questions</option>
+          <option value="short">Short-answer questions</option>
+          <option value="long">Long-answer questions</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="paperTopic">Chapter or topic</label>
+        <input id="paperTopic" placeholder="Example: Fractions, Force, Plants" required>
+      </div>
+
+      <div>
+        <label for="paperCount">Number of questions</label>
+        <select id="paperCount">
+          <option value="5">5 questions</option>
+          <option value="10" selected>10 questions</option>
+          <option value="15">15 questions</option>
+          <option value="20">20 questions</option>
+        </select>
+      </div>
+
+      <div class="full">
+        <button class="generate-btn" type="submit">
+          ✨ Generate Practice Paper
+        </button>
+      </div>
+    </form>
+
+    <p class="generator-note">
+      Note: This first version creates topic-based practice prompts using
+      built-in templates. It does not verify questions against the complete
+      AP syllabus. Review questions before using them in school examinations.
+    </p>
+
+    <div class="paper-output" id="paperOutput">
+      <div id="paperContent"></div>
+      <div class="paper-actions">
+        <button type="button" id="printPaper">🖨️ Print / Save PDF</button>
+        <button type="button" id="copyPaper">📋 Copy Questions</button>
+      </div>
+      <p id="copyStatus" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
 <section class="official" id="resources">
   <h2>Official AP Education Resources</h2>
   <p>Visit official portals for textbooks, syllabus information and examination updates.</p>
@@ -753,5 +844,263 @@ footer {
 <footer>
   © 2026 SyllabusPaper · Learn Today. Lead Tomorrow.
 </footer>
+<script>
+const questionTemplates = {
+  Mathematics: {
+    mcq: [
+      "Which rule or formula is used to solve problems involving {topic}?",
+      "Which of the following methods can be used to solve a problem on {topic}?",
+      "What is the correct first step when solving a problem involving {topic}?",
+      "Which statement about {topic} is correct?",
+      "Which example best represents {topic}?"
+    ],
+    short: [
+      "Define {topic} and give one example.",
+      "Explain the main rule used in {topic}.",
+      "Solve one example problem involving {topic} and show your steps.",
+      "Write the important formulae related to {topic}.",
+      "Explain one real-life application of {topic}."
+    ],
+    long: [
+      "Explain {topic} step by step with a worked example.",
+      "Solve two problems based on {topic}, showing all calculations.",
+      "Explain the important rules of {topic} and demonstrate their use.",
+      "Describe a real-life situation involving {topic} and solve it mathematically."
+    ]
+  },
+  Physics: {
+    mcq: [
+      "Which principle is most closely related to {topic}?",
+      "Which example demonstrates {topic}?",
+      "Which instrument or unit may be relevant to measuring {topic}?",
+      "Which statement about {topic} is scientifically correct?",
+      "What is the main purpose of studying {topic}?"
+    ],
+    short: [
+      "Define {topic}.",
+      "State two important facts about {topic}.",
+      "Give one daily-life example of {topic}.",
+      "Explain the principle behind {topic}.",
+      "Draw and label a diagram related to {topic}, if applicable."
+    ],
+    long: [
+      "Explain {topic} with suitable examples and a labelled diagram, where relevant.",
+      "Describe the important principles of {topic} and their applications.",
+      "Explain an experiment related to {topic}, including its aim, procedure and conclusion.",
+      "Discuss the importance of {topic} in everyday life."
+    ]
+  },
+  Biology: {
+    mcq: [
+      "Which structure or process is associated with {topic}?",
+      "Which statement about {topic} is correct?",
+      "What is the main function of the structure involved in {topic}?",
+      "Which example illustrates {topic}?",
+      "Why is {topic} important to living organisms?"
+    ],
+    short: [
+      "Define {topic}.",
+      "Write two important points about {topic}.",
+      "Explain the function of the main structures involved in {topic}.",
+      "Give one example related to {topic}.",
+      "Draw and label a relevant diagram, if applicable."
+    ],
+    long: [
+      "Explain {topic} with a suitable labelled diagram.",
+      "Describe the stages or main processes involved in {topic}.",
+      "Explain the importance of {topic} to living organisms.",
+      "Compare the related biological structures or processes involved in {topic}."
+    ]
+  },
+  "Social Studies": {
+    mcq: [
+      "Which fact or concept is associated with {topic}?",
+      "Which statement about {topic} is correct?",
+      "Why is {topic} important in understanding society?",
+      "Which example best illustrates {topic}?",
+      "Which source could help us learn more about {topic}?"
+    ],
+    short: [
+      "Define or describe {topic}.",
+      "Write two important points about {topic}.",
+      "Explain one cause or effect related to {topic}.",
+      "Give one example connected with {topic}.",
+      "Write a short note on the importance of {topic}."
+    ],
+    long: [
+      "Explain {topic} with relevant examples.",
+      "Discuss the causes, effects or importance of {topic}, as applicable.",
+      "Describe the major features of {topic}.",
+      "Explain how {topic} affects people, communities or the environment."
+    ]
+  },
+  English: {
+    mcq: [
+      "Which statement best explains the meaning of {topic}?",
+      "Which sentence best illustrates the use of {topic}?",
+      "Which option correctly applies a rule related to {topic}?",
+      "What is the main idea or purpose of {topic}?",
+      "Which example demonstrates correct usage related to {topic}?"
+    ],
+    short: [
+      "Explain {topic} in your own words.",
+      "Write two important points about {topic}.",
+      "Give two examples related to {topic}.",
+      "Write a short paragraph about {topic}.",
+      "Explain one important rule or idea related to {topic}."
+    ],
+    long: [
+      "Write a detailed explanation of {topic} with examples.",
+      "Write a paragraph or composition on {topic}.",
+      "Explain the main ideas and importance of {topic}.",
+      "Prepare a short written response about {topic}, using suitable examples."
+    ]
+  },
+  Telugu: {
+    mcq: [
+      "{topic}కు సంబంధించిన సరైన వాక్యాన్ని గుర్తించండి.",
+      "{topic} యొక్క ముఖ్య ఉద్దేశం ఏమిటి?",
+      "{topic}కు సరిపోయే ఉదాహరణను గుర్తించండి.",
+      "{topic}లోని ప్రధాన భావం ఏమిటి?",
+      "{topic}కు సంబంధించిన సరైన అంశాన్ని ఎంచుకోండి."
+    ],
+    short: [
+      "{topic} గురించి మీ సొంత మాటల్లో రాయండి.",
+      "{topic}లోని రెండు ముఖ్యాంశాలను రాయండి.",
+      "{topic}కు ఒక ఉదాహరణ ఇవ్వండి.",
+      "{topic}పై చిన్న పేరా రాయండి.",
+      "{topic} యొక్క ప్రాముఖ్యతను వివరించండి."
+    ],
+    long: [
+      "{topic} గురించి వివరంగా రాయండి.",
+      "{topic}లోని ముఖ్య భావాలను ఉదాహరణలతో వివరించండి.",
+      "{topic} యొక్క ప్రాముఖ్యతను వివరించండి.",
+      "{topic}పై ఒక విస్తృత సమాధానం రాయండి."
+    ]
+  },
+  Hindi: {
+    mcq: [
+      "{topic} से संबंधित सही कथन चुनिए।",
+      "{topic} का मुख्य उद्देश्य क्या है?",
+      "{topic} से संबंधित सही उदाहरण चुनिए।",
+      "{topic} का मुख्य विचार क्या है?",
+      "{topic} से संबंधित सही विकल्प चुनिए।"
+    ],
+    short: [
+      "{topic} को अपने शब्दों में समझाइए।",
+      "{topic} के दो मुख्य बिंदु लिखिए।",
+      "{topic} का एक उदाहरण दीजिए।",
+      "{topic} पर एक छोटा अनुच्छेद लिखिए।",
+      "{topic} का महत्व बताइए।"
+    ],
+    long: [
+      "{topic} के बारे में विस्तार से लिखिए।",
+      "{topic} के मुख्य विचार उदाहरणों सहित समझाइए।",
+      "{topic} के महत्व का वर्णन कीजिए।",
+      "{topic} पर विस्तृत उत्तर लिखिए।"
+    ]
+  }
+};
+
+const typeLabels = {
+  mcq: "Multiple Choice Questions",
+  short: "Short-Answer Questions",
+  long: "Long-Answer Questions",
+  mixed: "Mixed Practice Questions"
+};
+
+document.getElementById("generatorForm").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  const className = document.getElementById("paperClass").value;
+  const subject = document.getElementById("paperSubject").value;
+  const language = document.getElementById("paperLanguage").value;
+  const selectedType = document.getElementById("paperType").value;
+  const topic = document.getElementById("paperTopic").value.trim();
+  const count = Number(document.getElementById("paperCount").value);
+
+  if (!topic) {
+    alert("Please enter a chapter or topic.");
+    return;
+  }
+
+  const bank = questionTemplates[subject];
+  const types = selectedType === "mixed"
+    ? ["mcq", "short", "long"]
+    : [selectedType];
+
+  const questions = [];
+  let number = 0;
+
+  while (questions.length < count) {
+    const type = types[number % types.length];
+    const templates = bank[type];
+    const cycle = Math.floor(number / types.length);
+    const template = templates[cycle % templates.length];
+    const question = template.replaceAll("{topic}", topic);
+
+    questions.push({
+      type,
+      question,
+      number: questions.length + 1
+    });
+    number++;
+  }
+
+  const escapedTopic = topic.replace(/[&<>"']/g, character => ({
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#39;"
+  })[character]);
+
+  let html = `
+    <h3>SYLLABUSPAPER</h3>
+    <h4>PRACTICE QUESTION PAPER</h4>
+    <p><strong>Class:</strong> ${className}</p>
+    <p><strong>Subject:</strong> ${subject}</p>
+    <p><strong>Paper language selected:</strong> ${language}</p>
+    <p><strong>Chapter / Topic:</strong> ${escapedTopic}</p>
+    <p><strong>Question type:</strong> ${typeLabels[selectedType]}</p>
+    <hr>
+    <p><strong>Instructions:</strong> Answer all questions. Write neatly and show your working where needed.</p>
+    <ol>
+  `;
+
+  questions.forEach(item => {
+    html += `<li>${item.question}</li>`;
+  });
+
+  html += `
+    </ol>
+    <hr>
+    <p><em>Practice material generated from built-in templates. Check it against your textbook and syllabus before classroom use.</em></p>
+  `;
+
+  document.getElementById("paperContent").innerHTML = html;
+  document.getElementById("paperOutput").style.display = "block";
+  document.getElementById("copyStatus").textContent = "";
+  document.getElementById("paperOutput").scrollIntoView({ behavior: "smooth" });
+});
+
+document.getElementById("printPaper").addEventListener("click", function() {
+  window.print();
+});
+
+document.getElementById("copyPaper").addEventListener("click", async function() {
+  const content = document.getElementById("paperContent").innerText;
+
+  try {
+    await navigator.clipboard.writeText(content);
+    document.getElementById("copyStatus").textContent =
+      "Questions copied successfully.";
+  } catch (error) {
+    document.getElementById("copyStatus").textContent =
+      "Copy was blocked by your browser. Select the paper text and copy it manually.";
+  }
+});
+</script>
+
 </body>
 </html>
